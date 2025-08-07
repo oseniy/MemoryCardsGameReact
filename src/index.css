@@ -24,6 +24,7 @@ html, body, #root {
 .font-header {
     font-size: clamp(2.5rem, 8vmin, 5rem);
     font-weight: bold;
+    margin: clamp(4rem, 12vmin, 7.5rem);
 }
 
 .font-small-pale {

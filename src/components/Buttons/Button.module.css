@@ -1,0 +1,13 @@
+.button {
+    all: unset;
+    margin: clamp(0.5rem, 2vmin, 1.25rem);
+    transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button:hover {
+    cursor: pointer;
+    transform: scale(0.95);
+}
