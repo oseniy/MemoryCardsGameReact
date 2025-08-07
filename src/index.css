@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'MyFont';
+    src: url('./assets/fonts/ofont.ru_Itim.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body, #root {
+    height: 100%;
+    font-family: 'MyFont', sans-serif;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: default;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.font-header {
+    font-size: clamp(2.5rem, 8vmin, 5rem);
+    font-weight: bold;
+}
+
+.font-small-pale {
+    cursor: default;
+    font-size: clamp(1rem, 3vmin, 1.8rem);
+    color: rgb(150, 150, 150)
+}
+
+.font-small {
+    cursor: default;
+    font-size: clamp(1rem, 3vmin, 1.8rem);
+}
+
+.font-main {
+    cursor: default;
+    font-size: clamp(1.5rem, 5vmin, 3rem);
+}
+
+.gold-color {
+ color: #E6C04D
+}
