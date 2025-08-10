@@ -22,25 +22,25 @@ html, body, #root {
 }
 
 .font-header {
-    font-size: clamp(2.5rem, 8vmin, 5rem);
+    font-size: 4rem;
     font-weight: bold;
-    margin: clamp(4rem, 12vmin, 7.5rem);
+    margin: 4rem;
 }
 
 .font-small-pale {
     cursor: default;
-    font-size: clamp(1rem, 3vmin, 1.8rem);
+    font-size: 1.5rem;
     color: rgb(150, 150, 150)
 }
 
 .font-small {
     cursor: default;
-    font-size: clamp(1rem, 3vmin, 1.8rem);
+    font-size: 1.5rem;
 }
 
 .font-main {
     cursor: default;
-    font-size: clamp(1.5rem, 5vmin, 3rem);
+    font-size: 2.5rem;
 }
 
 .gold-color {
