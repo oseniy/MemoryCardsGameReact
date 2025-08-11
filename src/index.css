@@ -47,31 +47,24 @@ html, body, #root {
  color: #E6C04D
 }
 
-/* ------ ENTER (новый экран) ------ */
-/* начальное состояние перед входом */
 .screen-enter {
-  transform: translateX(-100%); /* из левой стороны */
+  transform: translateX(-100%);
   opacity: 0;
 }
 
-/* активная фаза входа (запускаем анимацию) */
 .screen-enter-active {
   animation: slide-in 500ms ease forwards;
 }
 
-/* ------ EXIT (уход старого экрана) ------ */
-/* начальное состояние перед выходом (обычное) */
 .screen-exit {
   transform: translateX(0);
   opacity: 1;
 }
 
-/* активная фаза выхода */
 .screen-exit-active {
   animation: slide-out 500ms ease forwards;
 }
 
-/* keyframes */
 @keyframes slide-in {
   from {
     transform: translateX(-100%);
