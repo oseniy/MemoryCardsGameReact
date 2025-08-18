@@ -1,4 +1,4 @@
-import NavButton from '../../Buttons/NavButton';
+import NavButton from '../../components/Buttons/NavButton';
 import styles from './LeaderBoard.module.css';
 
 export default function Level() {

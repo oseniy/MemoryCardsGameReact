@@ -65,24 +65,37 @@ html, body, #root {
   animation: slide-out 500ms ease forwards;
 }
 
-@keyframes slide-in {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  to {
+@keyframes slide-out {
+  0% {
     transform: translateX(0);
     opacity: 1;
+  }
+
+  35% {
+    transform: translateX(5vw) skewX(5deg);
+  }
+
+  90% {
+    opacity: 1
+  }
+
+  100% {
+    transform: translateX(-100vw) skewX(-15deg);
+    opacity: 0;
   }
 }
 
-@keyframes slide-out {
-  from {
+@keyframes slide-in {
+  0% {
+    transform: translateX(100vw) skewX(-35deg);
+    opacity: 0;
+  }
+
+  60% {
+    transform: translateX(-5vw) skewX(5deg);
+  }
+  100% {
     transform: translateX(0);
     opacity: 1;
-  }
-  to {
-    transform: translateX(100%);
-    opacity: 0;
   }
 }

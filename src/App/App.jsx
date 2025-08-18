@@ -2,13 +2,13 @@ import { Routes, Route, useLocation } from 'react-router'
 import { useRef } from 'react'
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
 import styles from './App.module.css'
-import backgroundImage from '../../assets/imgs/background.png'
+import backgroundImage from '../assets/imgs/background.png'
 
-import Home from '../screens/Home/Home'
-import LevelEasy from '../screens/LevelEasy/LevelEasy'
-import LevelNormal from '../screens/LevelNormal/LevelNormal'
-import LevelHard from '../screens/LevelHard/LevelHard'
-import LeaderBoard from '../screens/LeaderBoard/LeaderBoard'
+import Home from '../pages/Home/Home'
+import LevelEasy from '../pages/LevelEasy/LevelEasy'
+import LevelNormal from '../pages/LevelNormal/LevelNormal'
+import LevelHard from '../pages/LevelHard/LevelHard'
+import LeaderBoard from '../pages/LeaderBoard/LeaderBoard'
 
 export default function App() {
   const location = useLocation()
