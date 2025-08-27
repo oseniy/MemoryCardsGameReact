@@ -1,11 +1,12 @@
 import NavButton from '../../components/Buttons/NavButton';
 import styles from './LevelEasy.module.css';
+import Screen from '../../components/Screen/Screen';
 
 export default function Level() {
     return (
-        <div className='screen'>
+        <Screen>
             <p className='font-main'>Легкий</p>
             <NavButton />   
-        </div>
+        </Screen>
     )
 }
