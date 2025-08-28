@@ -14,7 +14,7 @@
 }
 
 /* контейнер, который анимируется */
-.screen-container {
+.screenContainer {
   position: absolute;
   inset: 0;
   width: 100%;

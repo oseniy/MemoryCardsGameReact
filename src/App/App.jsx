@@ -3,6 +3,7 @@ import { useRef } from 'react'
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
 import styles from './App.module.css'
 import backgroundImage from '../assets/imgs/background.png'
+import { GameProvider } from '../components/Game/GameContext'
 
 import Home from '../pages/Home/Home'
 import LevelEasy from '../pages/LevelEasy/LevelEasy'
@@ -19,25 +20,37 @@ export default function App() {
       className={styles.app}
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <SwitchTransition>
-        <CSSTransition
-          key={location.pathname}
-          nodeRef={nodeRef}
-          timeout={500}
-          classNames="screen"
-          unmountOnExit
-        >
-          <div ref={nodeRef} className="screen-container">
-            <Routes location={location}>
-              <Route path="/" element={<Home />} />
-              <Route path="/LevelEasy" element={<LevelEasy />} />
-              <Route path="/LevelNormal" element={<LevelNormal />} />
-              <Route path="/LevelHard" element={<LevelHard />} />
-              <Route path="/LeaderBoard" element={<LeaderBoard />} />
-            </Routes>
-          </div>
-        </CSSTransition>
-      </SwitchTransition>
+        <SwitchTransition>
+          <CSSTransition
+            key={location.pathname}
+            nodeRef={nodeRef}
+            timeout={500}
+            classNames="screen"
+            unmountOnExit
+          >
+            <div ref={nodeRef} className={styles.screenContainer}>
+              <Routes location={location}>
+                <Route path="/" element={<Home />} />
+                  <Route path="/LevelEasy" element={
+                    <GameProvider>
+                      <LevelEasy />
+                    </GameProvider>
+                    } />
+                  <Route path="/LevelNormal" element={
+                    <GameProvider>
+                      <LevelNormal />
+                    </GameProvider>
+                    } />
+                  <Route path="/LevelHard" element={
+                    <GameProvider>
+                      <LevelHard />
+                    </GameProvider>
+                    } />
+                  <Route path="/LeaderBoard" element={<LeaderBoard />} />
+              </Routes>
+            </div>
+          </CSSTransition>
+        </SwitchTransition>
     </div>
   )
 }

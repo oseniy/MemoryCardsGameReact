@@ -1,0 +1,49 @@
+import png1 from "../../assets/imgs/1.png";
+import png2 from "../../assets/imgs/2.png";
+import png3 from "../../assets/imgs/3.png";
+import png4 from "../../assets/imgs/4.png";
+import png5 from "../../assets/imgs/5.png";
+import png6 from "../../assets/imgs/6.png";
+import png7 from "../../assets/imgs/7.png";
+import png8 from "../../assets/imgs/8.png";
+import png9 from "../../assets/imgs/9.png";
+import png10 from "../../assets/imgs/10.png";
+import png11 from "../../assets/imgs/11.png";
+import png12 from "../../assets/imgs/12.png";
+
+const imgs = [png1, png2, png3, png4, png5, png6, png7, png8, png9, png10, png11, png12];
+
+const colors = [ 
+    "#FFD1DC", "#B5EAD7", "#C7CEEA", "#E2F0CB", 
+    "#FFDAC1", "#B2E2F1", "#F8C8DC", "#D5E6ED", 
+    "#F3E6DD", "#D4A5C3", "#A8D8B9", "#FFE5B4" 
+];
+
+const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+export default function createCards(totalPairs) {
+
+    const shuffledImgs = shuffleArray(imgs).slice(0, totalPairs);
+    const shuffledColors = shuffleArray(colors).slice(0, totalPairs);
+
+    const cardsData = Array.from({length: totalPairs}).map((_, i) => ({
+        img: shuffledImgs[i],
+        color: shuffledColors[i],
+        value: values[i]
+    }))
+
+    const pairedCardsData = cardsData.flatMap(card => [card, { ...card }]);
+
+    const finalCards = shuffleArray(pairedCardsData); 
+    
+    return finalCards;
+}
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
