@@ -5,15 +5,17 @@ const GameContext = createContext();
 
 const initialState = {
     Hps: 0,
-    HPsLeft: 0,
+    HPsLeft: Infinity,
     totalPairs: 0,
-    pairsFound: 0,
+    pairsFound: Infinity,
     started: false,
     startTime: null,
     timeSpent: 0,
     difficultyText: "",
     cards: [],
-    flippedCards: []
+    flippedCards: [],
+    victory: false,
+    defeat: false
 }
 
 function gameReducer(state, action) {
@@ -25,6 +27,8 @@ function gameReducer(state, action) {
                 HPsLeft: action.payload.HPs,
                 pairsFound: 0,
                 started: false,
+                victory: false,
+                defeat: false,
                 timeSpent: 0,
                 cards: createCards(action.payload.totalPairs)
             };
@@ -62,10 +66,16 @@ function gameReducer(state, action) {
                 HPsLeft: state.HPsLeft - 1,
                 flippedCards: []
             };
-        case "END_LEVEL":
+        case "VICTORY":
             return {
                 ...state,
-                timeSpent: Date.now() - state.startTime, started: false
+                timeSpent: Date.now() - state.startTime, started: false,
+                victory: true
+            };
+        case "DEFEAT":
+            return {
+                ...state,
+                defeat: true
             };
         default: 
             return state;

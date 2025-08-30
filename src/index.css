@@ -72,6 +72,14 @@ html, body, #root {
   animation: slide-out 500ms ease forwards;
 }
 
+.slide-out {
+    animation: slide-out 500ms ease forwards;
+}
+
+.slide-in {
+    animation: slide-in 500ms ease forwards;
+}
+
 @keyframes slide-out {
   0% {
     transform: translateX(0);
@@ -100,4 +108,9 @@ html, body, #root {
   100% {
     transform: translateX(0);
   }
+}
+
+.disable {
+  opacity: 0.5;
+  pointer-events: none
 }

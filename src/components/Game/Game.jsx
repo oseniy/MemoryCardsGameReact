@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { CSSTransition } from 'react-transition-group'
 import styles from "./Game.module.css";
 import { useGame } from "./GameContext";
 import Card from "../Card/Card";
@@ -14,6 +15,8 @@ export default function Game({difficulty}) {
         hard:   { HPs: 16, totalPairs: 12, difficultyText: "Сложный" },
     };
 
+    useEffect(() => {
+    })
 
     useEffect(() => {
         if (levelsConfig[difficulty]) {
@@ -36,12 +39,12 @@ export default function Game({difficulty}) {
     }, [state.flippedCards])
     
     useEffect(() => {
-        if (state.pairsFound === state.totalPairs) {
-            dispatch({ type: "END_LEVEL" });
+        if (state.pairsFound == state.totalPairs) {
+            dispatch({ type: "VICTORY" });
             // тут можно вызвать updateBestScore
         }
-        if (state.HPsLeft === 0) {
-            dispatch({ type: "END_LEVEL" });
+        if (state.HPsLeft == 0) {
+            dispatch({ type: "DEFEAT" });
         }
     }, [state.pairsFound, state.HPsLeft]);
 
@@ -52,10 +55,19 @@ export default function Game({difficulty}) {
                 <TextMain>Жизней: {state.HPsLeft}</TextMain>
                 <TextMain>{state.difficultyText}</TextMain>
             </div>
-            <div className={`${styles.cards} ${styles.layout12}`}>
+            <div className={`
+                ${styles.cards} 
+                ${styles.layout12}
+                ${(state.victory || state.defeat) ? "disable" : ""}
+                `}>
                 {state.cards.map((card, i) => (
                     <Card key={`${card.value}-${i}`} index={i} color={card.color} img={card.img}/>
                 ))}
+            </div>
+            <div className={styles.controlBar}>
+                <NavButton text={"пойти нахуй"} path={"/LevelEasy"}/>
+                <div className={styles.levelBtnContainer}>
+                </div>
             </div>
         </div>
     )

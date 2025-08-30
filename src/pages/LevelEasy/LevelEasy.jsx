@@ -7,7 +7,6 @@ export default function Level() {
     return (
         <Screen>
             <Game difficulty={"easy"}/>
-            <NavButton />   
         </Screen>
     )
 }
