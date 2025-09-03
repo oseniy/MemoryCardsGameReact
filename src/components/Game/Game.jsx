@@ -25,12 +25,6 @@ export default function Game({difficulty}) {
         hard: styles.gameHard
     }
 
-    const cardSizes = {
-        easy: styles.easyCard,
-        normal: styles.normalCard,
-        hard: styles.hardCard
-    }
-
     useEffect(() => {
         if (levelsConfig[difficulty]) {
             dispatch({ type: "START_LEVEL", payload: levelsConfig[difficulty] })
@@ -78,7 +72,7 @@ export default function Game({difficulty}) {
                     ${(state.victory || state.defeat) ? "disable" : ""}
                     `}>
                     {state.cards.map((card, i) => (
-                        <Card key={`${card.value}-${i}`} index={i} color={card.color} img={card.img} size={cardSizes[difficulty]}/>
+                        <Card key={`${card.value}-${i}`} index={i} color={card.color} img={card.img} className={styles.positionCard}/>
                     ))}
                 </div>
                     <OverlayText show={state.victory}>Победа!</OverlayText>

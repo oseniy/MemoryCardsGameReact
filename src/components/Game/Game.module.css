@@ -35,19 +35,19 @@
         grid-template-columns: repeat(6, 1fr);
     }
 
-    @media (max-width: 950px) {
+    @media (max-aspect-ratio: 1.17) {
         & .cards {
             grid-template-columns: repeat(4, 1fr);
         }
     }
 
-    @media (max-width: 570px) {
+    @media (max-aspect-ratio: 0.7) {
         & .controlBar {
             flex-direction: column;
         }
     }
 
-    @media (max-width: 470px) {
+    @media (max-aspect-ratio: 0.58) {
         & .cards {
             grid-template-columns: repeat(3, 1fr);
         }
@@ -55,43 +55,49 @@
 }
 
 .gameNormal {
-    & .cards {
+    .cards {
         grid-template-columns: repeat(6, 1fr);
     }
 
-    @media (max-width: 585px) {
-        & .cards {
-            grid-template-columns: repeat(4, 1fr);
-        }
+    .positionCard {
+        max-width: 20vh;
+    }
 
-        & .cards .normalCard:nth-child(17) {
-            grid-column: 2;
-        }
-        
-        & .cards .normalCard:nth-child(18) {
-            grid-column: 3;
-        }
+    @media (max-aspect-ratio: 0.726) {
+    .cards {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .cards .positionCard:nth-child(17) {
+        grid-column: 2;
+    }
+    
+    .cards .positionCard:nth-child(18) {
+        grid-column: 3;
     }
 }
-
-.normalLayout {
-    
 }
 
+.gameHard {
+    .cards {
+        grid-template-columns: repeat(8, 1fr);
+    }
 
+    @media (max-aspect-ratio: 1.354) {
+        .cards {
+            grid-template-columns: repeat(6, 1fr);
+        }
+    }
 
-.hardLayout {
-    grid-template-columns: repeat(8, 1fr);
-}
+    @media (max-aspect-ratio: 0.8) {
+        & .controlBar {
+            flex-direction: column;
+        }
+    }
 
-.easyCard {
-
-}
-
-.normalCard {
-    max-width: 20vh;
-}
-
-.hardCard {
-
+    @media (max-aspect-ratio: 0.517) {
+        .cards {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
 }

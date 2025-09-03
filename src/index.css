@@ -23,29 +23,44 @@ html, body, #root {
 }
 
 .font-header {
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 8vmin, 5rem);
     font-weight: bold;
     margin: 4rem;
 }
 
 .font-small-pale {
     cursor: default;
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 3vmin, 1.8rem);
     color: rgb(150, 150, 150)
 }
 
 .font-small {
     cursor: default;
-    font-size: 1.5rem;
+    font-size:clamp(1rem, 3vmin, 1.8rem);
 }
 
 .font-main {
     cursor: default;
-    font-size: 2.5rem;
+    font-size: clamp(1.5rem, 5vmin, 3rem);
 }
 
 .gold-color {
  color: #E6C04D
+}
+
+@media (orientation: portrait) {
+    .font-header {
+        font-size: clamp(3.75rem, 12vmin, 3.75rem);
+    }
+    .font-pale {
+        font-size: clamp(1.35rem, 4.5vmin, 1.5rem);
+    }
+    .font-main {
+        font-size: clamp(2.25rem, 7.5vmin, 2.25rem);
+    }
+    .menu-item {
+        margin: clamp(0.75rem, 3vmin, 0.94rem);
+    }
 }
 
 .screen {

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useGame } from "../Game/GameContext";
 import styles from './Card.module.css';
 
-export default function Card({index, color, img, size}) {
+export default function Card({index, color, img, className}) {
     const { state, dispatch } = useGame();
     const flipped = state.flippedCards.includes(index) || state.cards[index].matched;
 
@@ -12,7 +12,7 @@ export default function Card({index, color, img, size}) {
     }
 
     return (
-        <div className={`${styles.card} ${size} ${flipped ? styles.flipped : ""}`} onClick={handleClick}>
+        <div className={`${styles.card} ${className} ${flipped ? styles.flipped : ""}`} onClick={handleClick}>
             <div className={styles.cardInner}>
                 <div className={styles.cardFront}></div>
                 <div className={styles.cardBack} style={{backgroundColor: color, backgroundImage: `url(${img})`}}></div>
