@@ -9,6 +9,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    align-items: center;
 }
 
 html, body, #root {
@@ -72,12 +73,38 @@ html, body, #root {
   animation: slide-out 500ms ease forwards;
 }
 
-.slide-out {
-    animation: slide-out 500ms ease forwards;
+.slide-enter {
+  transform: translateX(-100%);
 }
 
-.slide-in {
-    animation: slide-in 500ms ease forwards;
+.slide-enter-active {
+  animation: slide-in 300ms ease forwards;
+}
+
+.slide-exit {
+  transform: translateX(0);
+}
+
+.slide-exit-active {
+  animation: slide-out 300ms ease forwards;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-out;
 }
 
 @keyframes slide-out {
@@ -86,7 +113,7 @@ html, body, #root {
   }
 
   35% {
-    transform: translateX(5vw) skewX(5deg);
+    transform: translateX(10%) skewX(5deg);
   }
 
   90% {
@@ -103,7 +130,7 @@ html, body, #root {
   }
 
   60% {
-    transform: translateX(-5vw) skewX(5deg);
+    transform: translateX(-10%) skewX(5deg);
   }
   100% {
     transform: translateX(0);
@@ -113,4 +140,70 @@ html, body, #root {
 .disable {
   opacity: 0.5;
   pointer-events: none
+}
+
+@media (max-width: 1050px) {
+  @keyframes slide-out {
+    0% {
+      transform: translateX(0);
+    }
+
+    35% {
+      transform: translateX(10%) skewX(5deg);
+    }
+
+    90% {
+    }
+
+    100% {
+      transform: translateX(-100vw) skewX(-5deg);
+    }
+  }
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(100vw) skewX(-15deg);
+  }
+
+  60% {
+    transform: translateX(-10%) skewX(5deg);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+}
+
+@media (max-width: 600px) {
+  @keyframes slide-out {
+    0% {
+      transform: translateX(0);
+    }
+
+    35% {
+      transform: translateX(10%) skewX(5deg);
+    }
+
+    90% {
+    }
+
+    100% {
+      transform: translateX(-100vw) skewX(-5deg);
+    }
+  }
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(100vw) skewX(-15deg);
+  }
+
+  60% {
+    transform: translateX(-10%) skewX(2deg);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 }

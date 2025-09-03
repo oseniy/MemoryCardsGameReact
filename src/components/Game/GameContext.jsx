@@ -12,6 +12,8 @@ const initialState = {
     startTime: null,
     timeSpent: 0,
     difficultyText: "",
+    currentPath: "",
+    nextPath: "",
     cards: [],
     flippedCards: [],
     victory: false,

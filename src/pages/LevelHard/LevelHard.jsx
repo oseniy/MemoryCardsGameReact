@@ -1,12 +1,12 @@
 import NavButton from '../../components/Buttons/NavButton';
 import styles from './LevelHard.module.css';
 import Screen from '../../components/Screen/Screen';
+import Game from '../../components/Game/Game';
 
 export default function Level() {
     return (
         <Screen>
-            <p className='font-main'>Сложный</p>
-            <NavButton />   
+            <Game difficulty={"hard"}/>
         </Screen>
     )
 }

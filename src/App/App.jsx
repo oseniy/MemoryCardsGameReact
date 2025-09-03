@@ -22,7 +22,7 @@ export default function App() {
     >
         <SwitchTransition>
           <CSSTransition
-            key={location.pathname}
+            key={location.key}
             nodeRef={nodeRef}
             timeout={500}
             classNames="screen"
