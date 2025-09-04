@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useGame } from "../Game/GameContext";
+import { useGame } from "../GameContext";
 import styles from './Card.module.css';
 
 export default function Card({index, color, img, className}) {

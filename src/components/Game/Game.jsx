@@ -2,7 +2,7 @@ import { useEffect, useRef} from "react";
 import { CSSTransition } from 'react-transition-group'
 import styles from "./Game.module.css";
 import { useGame } from "./GameContext";
-import Card from "../Card/Card";
+import Card from "./Card/Card";
 import NavButton from '../Buttons/NavButton';
 import TextMain from '../Texts/TextMain/TextMain';
 import OverlayText from "../Texts/OverlayText/OverlayText";
