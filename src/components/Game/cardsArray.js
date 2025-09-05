@@ -11,7 +11,7 @@ import png10 from "../../assets/imgs/10.webp";
 import png11 from "../../assets/imgs/11.webp";
 import png12 from "../../assets/imgs/12.webp";
 
-const imgs = [png1, png2, png3, png4, png5, png6, png7, png8, png9, png10, png11, png12];
+export const imgs = [png1, png2, png3, png4, png5, png6, png7, png8, png9, png10, png11, png12];
 
 const colors = [ 
     "#FFD1DC", "#B5EAD7", "#C7CEEA", "#E2F0CB", 
