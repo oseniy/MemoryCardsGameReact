@@ -1,15 +1,15 @@
-import png1 from "../../assets/imgs/1.png";
-import png2 from "../../assets/imgs/2.png";
-import png3 from "../../assets/imgs/3.png";
-import png4 from "../../assets/imgs/4.png";
-import png5 from "../../assets/imgs/5.png";
-import png6 from "../../assets/imgs/6.png";
-import png7 from "../../assets/imgs/7.png";
-import png8 from "../../assets/imgs/8.png";
-import png9 from "../../assets/imgs/9.png";
-import png10 from "../../assets/imgs/10.png";
-import png11 from "../../assets/imgs/11.png";
-import png12 from "../../assets/imgs/12.png";
+import png1 from "../../assets/imgs/1.webp";
+import png2 from "../../assets/imgs/2.webp";
+import png3 from "../../assets/imgs/3.webp";
+import png4 from "../../assets/imgs/4.webp";
+import png5 from "../../assets/imgs/5.webp";
+import png6 from "../../assets/imgs/6.webp";
+import png7 from "../../assets/imgs/7.webp";
+import png8 from "../../assets/imgs/8.webp";
+import png9 from "../../assets/imgs/9.webp";
+import png10 from "../../assets/imgs/10.webp";
+import png11 from "../../assets/imgs/11.webp";
+import png12 from "../../assets/imgs/12.webp";
 
 const imgs = [png1, png2, png3, png4, png5, png6, png7, png8, png9, png10, png11, png12];
 

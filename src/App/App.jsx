@@ -2,7 +2,7 @@ import { Routes, Route, useLocation } from 'react-router'
 import { useRef } from 'react'
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
 import styles from './App.module.css'
-import backgroundImage from '../assets/imgs/background.png'
+import backgroundImage from '../assets/imgs/background.webp'
 import { GameProvider } from '../components/Game/GameContext'
 
 import Home from '../pages/Home/Home'
