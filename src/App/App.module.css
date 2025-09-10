@@ -22,6 +22,5 @@
   will-change: transform, opacity;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
-  contain: layout paint;
   transition: transform 500ms ease, opacity 500ms ease;
 }
