@@ -70,6 +70,7 @@ html, body, #root {
     justify-content: center;
     align-items: center;  
     flex-direction: column;
+    will-change: transform, opacity;
 }
 
 .screen-enter {
