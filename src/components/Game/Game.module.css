@@ -95,7 +95,7 @@
         }
     }
 
-    @media (max-aspect-ratio: 0.517) {
+    @media (max-aspect-ratio: 0.527) {
         .cards {
             grid-template-columns: repeat(4, 1fr);
         }
