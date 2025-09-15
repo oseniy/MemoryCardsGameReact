@@ -136,7 +136,7 @@ html, body, #root {
   }
 
   100% {
-    transform: translate3d(-100vw, 0, 0) skewX(-15deg);
+    transform: translate3d(-150vw, 0, 0) skewX(-15deg);
   }
 }
 
@@ -172,7 +172,7 @@ html, body, #root {
     }
 
     100% {
-      transform: translate3d(-100vw, 0, 0) skewX(-5deg);
+      transform: translate3d(-150vw, 0, 0) skewX(-5deg);
     }
   }
 
@@ -205,7 +205,7 @@ html, body, #root {
     }
 
     100% {
-      transform: translate3d(-100vw, 0, 0) skewX(-5deg);
+      transform: translate3d(-150vw, 0, 0) skewX(-5deg);
     }
   }
 

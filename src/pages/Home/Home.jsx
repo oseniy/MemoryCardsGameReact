@@ -3,10 +3,15 @@ import NavButton from '../../components/Buttons/NavButton';
 import Screen from '../../components/Screen/Screen';
 import Header from '../../components/Texts/Header/Header';
 import TextSmallPale from '../../components/Texts/TextSmallPale/TextSMallPale';
+import TopBar from '../../components/TopBar/TopBar';
 
 export default function Home() {
     return (
         <Screen>  
+            <TopBar>
+                <NavButton text={"Войти"} path={"/LevelEasy"} />
+                <NavButton text={"Зарегистрироваться"} path={"/LevelEasy"} />
+            </TopBar>
             <Header>Ёжки-мышки</Header>
             <TextSmallPale>Выберите уровень</TextSmallPale>
             <NavButton text={"Легкий"} path={"/LevelEasy"} />
