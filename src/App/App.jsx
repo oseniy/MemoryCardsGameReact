@@ -10,14 +10,10 @@ import LevelEasy from '../pages/LevelEasy/LevelEasy'
 import LevelNormal from '../pages/LevelNormal/LevelNormal'
 import LevelHard from '../pages/LevelHard/LevelHard'
 import LeaderBoard from '../pages/LeaderBoard/LeaderBoard'
-import { usePreloadImages } from '../hooks/usePreloadImages'
-import { imgs } from '../components/Game/cardsArray'
 
 export default function App() {
   const location = useLocation()
   const nodeRef = useRef(null)
-
-  usePreloadImages(imgs);
 
   return (
     <div
