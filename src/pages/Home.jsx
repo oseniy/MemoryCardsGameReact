@@ -1,16 +1,15 @@
-import styles from './Home.module.css';
-import NavButton from '../../components/Buttons/NavButton';
-import Screen from '../../components/Screen/Screen';
-import Header from '../../components/Texts/Header/Header';
-import TextSmallPale from '../../components/Texts/TextSmallPale/TextSMallPale';
-import TopBar from '../../components/TopBar/TopBar';
+import NavButton from '../components/Buttons/NavButton';
+import Screen from '../components/Screen/Screen';
+import Header from '../components/Texts/Header/Header';
+import TextSmallPale from '../components/Texts/TextSmallPale/TextSMallPale';
+import TopBar from '../components/TopBar/TopBar';
 
 export default function Home() {
     return (
         <Screen>  
             <TopBar>
-                <NavButton text={"Войти"} path={"/LevelEasy"} />
-                <NavButton text={"Зарегистрироваться"} path={"/LevelEasy"} />
+                <NavButton text={"Войти"} path={"/SignIn"} />
+                <NavButton text={"Зарегистрироваться"} path={"/SignUp"} />
             </TopBar>
             <Header>Ёжки-мышки</Header>
             <TextSmallPale>Выберите уровень</TextSmallPale>

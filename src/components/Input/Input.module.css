@@ -1,0 +1,10 @@
+.Input {
+    font-family: 'MyFont', sans-serif;
+    font-size: clamp(1rem, 3vmin, 1.8rem);
+    margin: clamp(0.5rem, 2vmin, 1.25rem);
+    width: clamp(15rem, 45vmin, 27rem);;
+    background: transparent;
+    border: 0.3rem solid black;
+    border-radius: 15px;
+    padding: 0.5rem 1rem;
+}

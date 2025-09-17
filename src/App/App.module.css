@@ -11,6 +11,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     position: relative;
+    transition: opacity 300ms ease-in;
 }
 
 /* контейнер, который анимируется */

@@ -123,6 +123,17 @@ html, body, #root {
   transition: opacity 300ms ease-out;
 }
 
+.disable {
+  opacity: 0.5;
+  pointer-events: none;
+  transition: opacity 300ms ease-out;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
 @keyframes slide-out {
   0% {
     transform: translate3d(0, 0, 0);
@@ -151,11 +162,6 @@ html, body, #root {
   100% {
     transform: translate3d(0, 0, 0);
   }
-}
-
-.disable {
-  opacity: 0.5;
-  pointer-events: none
 }
 
 @media (max-width: 1050px) {
