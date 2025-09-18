@@ -1,13 +1,11 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { auth } from '../firebase';
 import NavButton from '../components/Buttons/NavButton';
 import Screen from '../components/Screen/Screen';
 import Input from '../components/Input/Input'
-import TextMain from '../components/Texts/TextMain/TextMain';
 import SubmitButton from '../components/Buttons/SubmitButton';
 import { useLoading } from '../components/Loading/LoadingContext';
+import { signUp } from "../services/auth";
 
 export default function SignUp() {
     const [email, setEmail] = useState();
@@ -19,25 +17,17 @@ export default function SignUp() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        if (password !== confirmPassword) {
-        alert('Пароли не совпадают!')
-        return;
-        }
-
         setLoading(true);
-
         try {
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            await signUp(email, username, password, confirmPassword);
             setLoading(false);
-            navigate("/")
-
-        } catch (error) {
+            navigate("/");
+            e.target.reset();
+        } catch(error) {
             setLoading(false);
-            alert(`Ошибка регистрации: ${errorCode}`, errorMessage);
-            console.error(`Ошибка регистрации: ${errorCode}`);
+            alert(`Ошибка регистрации: ${error.message}`);
+            console.error(`Ошибка регистрации: ${error.message}`);
         }
-        e.target.reset();
     }
 
     return (
@@ -46,14 +36,12 @@ export default function SignUp() {
                 <Input 
                 type="email" 
                 placeholder="email" 
-                id="signUpEmailJS" 
                 required 
                 onChange={(e) => {setEmail(e.target.value)}}/>
 
                 <Input 
                 type="text" 
                 placeholder="никнейм" 
-                id="signUpUsernameJS" 
                 maxLength={15} 
                 minLength={3} 
                 required
@@ -62,7 +50,6 @@ export default function SignUp() {
                 <Input 
                 type="password" 
                 placeholder="пароль" 
-                id="signUpPasswdJS" 
                 minLength={6} 
                 required
                 onChange={(e) => {setPassword(e.target.value)}}/>
@@ -70,7 +57,6 @@ export default function SignUp() {
                 <Input 
                 type="password" 
                 placeholder="пароль повторно" 
-                id="signUpPasswdConfirmJS" 
                 minLength={6} 
                 required
                 onChange={(e) => {setConfirmPassword(e.target.value)}}/>

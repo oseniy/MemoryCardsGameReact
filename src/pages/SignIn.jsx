@@ -1,15 +1,51 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
+import { signIn } from "../services/auth";
+import { useLoading } from '../components/Loading/LoadingContext';
 import NavButton from '../components/Buttons/NavButton';
 import Screen from '../components/Screen/Screen';
 import Input from '../components/Input/Input'
-import TextMain from '../components/Texts/TextMain/TextMain';
+import SubmitButton from '../components/Buttons/SubmitButton';
+
 export default function SignIn() {
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+    const [loading, setLoading] = useLoading();
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+
+        try {
+            await signIn(email, password);
+            setLoading(false);
+            navigate("/")
+            e.target.reset();
+            console.log("пользователь вошел");
+        } catch (error) {
+            setLoading(false);
+            alert(`Ошибка входа в аккаунт: ${error.message}`);
+            console.error(`Ошибка входа в аккаунт: ${error.message}`);
+        }
+    }
+
     return (
         <Screen>
-            <form>
-                <Input type="email" placeholder="email" id="signUpEmailJS" required/>
-                <Input type="password" placeholder="пароль" id="signUpPasswdJS" minLength={6} required/>
+            <form onSubmit={handleSubmit}>
+                <Input 
+                type="email" 
+                placeholder="email" 
+                onChange={(e) => {setEmail(e.target.value)}}
+                required/>
+                <Input 
+                type="password" 
+                placeholder="пароль" 
+                minLength={6} 
+                onChange={(e) => {setPassword(e.target.value)}}
+                required/>
+                <SubmitButton text={"Войти"}/>
             </form>
-            <TextMain>Войти</TextMain>
             <NavButton/>
         </Screen>
     )
