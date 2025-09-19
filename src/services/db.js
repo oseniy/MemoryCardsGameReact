@@ -1,4 +1,4 @@
-import { doc, setDoc, collection, query, where, getDocs, updateDoc } from 'firebase/firestore';
+import { doc, setDoc, collection, query, where, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from './firebase';
 
 export async function isUsernameTaken(usernameToCheck) {
@@ -22,7 +22,7 @@ export async function isUsernameTaken(usernameToCheck) {
 }
 
 export async function createUser(uid, username, email) {
-    try{
+    try {
         setDoc(doc(db, 'users', uid), {
             username: username,
             email: email
@@ -33,4 +33,31 @@ export async function createUser(uid, username, email) {
         throw error;
     }
 
+}
+
+export async function getUsername(uid) {
+    try {
+        const userRef = doc(db, "users", uid);
+        const userSnap = await getDoc(userRef);
+        if (userSnap.exists()) {
+            return userSnap.data().username;
+        } else {
+            console.warn("Документ не найден:", uid);
+            return null;
+        }
+    } catch(error) {
+        console.error("Ошибка при получении username:", error);
+        throw error;
+    }
+}
+
+export async function getUserData(uid) {
+    try {
+        const userRef = doc(db, "users", uid);
+        const userSnap = await getDoc(userRef);
+        return userSnap.exists() ? userSnap.data() : null;
+    } catch(error) {
+        console.error("Ошибка при получении username:", error);
+        throw error;
+    }
 }

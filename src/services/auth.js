@@ -1,6 +1,6 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from "firebase/auth";
 import { auth } from './firebase';
-import { createUser, isUsernameTaken } from "./bd";
+import { createUser, isUsernameTaken } from "./db";
 
 function errorMessage(error) {
     if (error && error.code) {
@@ -34,6 +34,8 @@ function errorMessage(error) {
             return 'Произошла непредвиденная ошибка.'; 
         }
     }
+    console.error("Ошибка без кода или некорректная ошибка:", error);
+    return `Произошла непредвиденная ошибка: ${error?.message || 'Пожалуйста, попробуйте снова.'}`;
 }
 export async function signUp(email, username, password, confirmPassword) {
 
@@ -59,5 +61,15 @@ export async function signIn(email, password) {
     } catch (error) {
         error.message = errorMessage(error);
         throw error;
+    }
+}
+
+export async function HandleSignOut() {
+    try {
+        await signOut(auth);
+
+    } catch(error) {
+        error.message = errorMessage(error);
+        throw error;        
     }
 }

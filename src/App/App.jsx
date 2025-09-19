@@ -1,18 +1,19 @@
-import { Routes, Route, useLocation } from 'react-router'
-import { useRef } from 'react'
-import { CSSTransition, SwitchTransition } from 'react-transition-group'
-import styles from './App.module.css'
-import backgroundImage from '../assets/imgs/background.webp'
-import { GameProvider } from '../components/Game/GameContext'
-import { useLoading } from '../components/Loading/LoadingContext'
+import { Routes, Route, useLocation } from 'react-router';
+import { useRef } from 'react';
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
+import styles from './App.module.css';
+import backgroundImage from '../assets/imgs/background.webp';
+import { GameProvider } from '../components/Game/GameContext';
+import { useLoading } from '../components/Loading/LoadingContext';
 
-import Home from '../pages/Home'
-import LevelEasy from '../pages/LevelEasy'
-import LevelNormal from '../pages/LevelNormal'
-import LevelHard from '../pages/LevelHard'
-import LeaderBoard from '../pages/LeaderBoard'
-import SignUp from '../pages/SignUp'
-import SignIn from '../pages/SignIn'
+import Home from '../pages/Home';
+import LevelEasy from '../pages/LevelEasy';
+import LevelNormal from '../pages/LevelNormal';
+import LevelHard from '../pages/LevelHard';
+import LeaderBoard from '../pages/LeaderBoard';
+import SignUp from '../pages/SignUp';
+import SignIn from '../pages/SignIn';
+import Account from '../pages/Account';
 
 export default function App() {
   const location = useLocation();
@@ -53,6 +54,7 @@ export default function App() {
                     <Route path="/LeaderBoard" element={<LeaderBoard />} />
                     <Route path="/SignUp" element={<SignUp />} />
                     <Route path="/SignIn" element={<SignIn />} />
+                    <Route path="/Account" element={<Account/>}/>
                 </Routes>
               </div>
           </CSSTransition>

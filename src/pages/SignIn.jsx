@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { signIn } from "../services/auth";
 import { useLoading } from '../components/Loading/LoadingContext';
@@ -13,6 +13,11 @@ export default function SignIn() {
     const [loading, setLoading] = useLoading();
     const navigate = useNavigate();
 
+    useEffect(() => {
+        setEmail("");
+        setPassword("");
+    }, [])
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -21,7 +26,6 @@ export default function SignIn() {
             await signIn(email, password);
             setLoading(false);
             navigate("/")
-            e.target.reset();
             console.log("пользователь вошел");
         } catch (error) {
             setLoading(false);
@@ -36,11 +40,13 @@ export default function SignIn() {
                 <Input 
                 type="email" 
                 placeholder="email" 
+                value={email}
                 onChange={(e) => {setEmail(e.target.value)}}
                 required/>
                 <Input 
                 type="password" 
                 placeholder="пароль" 
+                value={password}
                 minLength={6} 
                 onChange={(e) => {setPassword(e.target.value)}}
                 required/>

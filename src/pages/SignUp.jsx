@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import NavButton from '../components/Buttons/NavButton';
 import Screen from '../components/Screen/Screen';
@@ -14,6 +14,13 @@ export default function SignUp() {
     const [username, setUsername] = useState();
     const [loading, setLoading] = useLoading();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        setUsername("");
+    }, [])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -36,12 +43,14 @@ export default function SignUp() {
                 <Input 
                 type="email" 
                 placeholder="email" 
+                value={email}
                 required 
                 onChange={(e) => {setEmail(e.target.value)}}/>
 
                 <Input 
                 type="text" 
-                placeholder="никнейм" 
+                placeholder="никнейм"
+                value={username} 
                 maxLength={15} 
                 minLength={3} 
                 required
@@ -50,13 +59,15 @@ export default function SignUp() {
                 <Input 
                 type="password" 
                 placeholder="пароль" 
+                value={password}
                 minLength={6} 
                 required
                 onChange={(e) => {setPassword(e.target.value)}}/>
 
                 <Input 
                 type="password" 
-                placeholder="пароль повторно" 
+                placeholder="пароль повторно"
+                value={confirmPassword} 
                 minLength={6} 
                 required
                 onChange={(e) => {setConfirmPassword(e.target.value)}}/>
