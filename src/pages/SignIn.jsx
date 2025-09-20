@@ -8,8 +8,8 @@ import Input from '../components/Input/Input'
 import SubmitButton from '../components/Buttons/SubmitButton';
 
 export default function SignIn() {
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [loading, setLoading] = useLoading();
     const navigate = useNavigate();
 

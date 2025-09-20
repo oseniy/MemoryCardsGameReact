@@ -8,10 +8,10 @@ import { useLoading } from '../components/Loading/LoadingContext';
 import { signUp } from "../services/auth";
 
 export default function SignUp() {
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
-    const [confirmPassword, setConfirmPassword] = useState();
-    const [username, setUsername] = useState();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [username, setUsername] = useState("");
     const [loading, setLoading] = useLoading();
     const navigate = useNavigate();
 

@@ -1,6 +1,6 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from "firebase/auth";
+import { createUserWithEmailAndPassword, onIdTokenChanged, sendEmailVerification, signInWithEmailAndPassword, signOut} from "firebase/auth";
 import { auth } from './firebase';
-import { createUser, isUsernameTaken } from "./db";
+import { createUser, isUsernameTaken, updateDbEmailVerified} from "./db";
 
 function errorMessage(error) {
     if (error && error.code) {
@@ -73,3 +73,34 @@ export async function HandleSignOut() {
         throw error;        
     }
 }
+
+const continueUrl = {
+  url: 'http://localhost:5173/Account',
+  handleCodeInApp: true
+}
+
+export async function sendEmail() {
+    const user = auth.currentUser;
+
+    if (user) {
+        try{
+            await sendEmailVerification(user, continueUrl);
+        } catch(error) {
+            error.message = errorMessage(error);
+            throw error;     
+        }
+    }
+}
+
+onIdTokenChanged(auth, async (user) => {
+    if (user) {
+        if (user.emailVerified) {
+            try {
+                await updateDbEmailVerified(user.uid);
+            } catch(error) {
+                error.message = errorMessage(error);
+                throw error; 
+            }
+        }
+    }
+})

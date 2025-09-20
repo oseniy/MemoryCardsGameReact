@@ -1,4 +1,4 @@
-import { doc, setDoc, collection, query, where, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, setDoc, collection, query, where, getDoc, getDocs, updateDoc } from 'firebase/firestore';
 import { db } from './firebase';
 
 export async function isUsernameTaken(usernameToCheck) {
@@ -59,5 +59,15 @@ export async function getUserData(uid) {
     } catch(error) {
         console.error("Ошибка при получении username:", error);
         throw error;
+    }
+}
+
+export async function updateDbEmailVerified(uid) {
+    try {
+        const userRef = doc(db, "users", uid);
+        await updateDoc(userRef, {emailVerified: true});
+    } catch(error) {
+        console.error("Ошибка обновления emailVerified в базе данных:", error);
+        throw error;        
     }
 }
