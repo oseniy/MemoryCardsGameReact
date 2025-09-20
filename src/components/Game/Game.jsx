@@ -6,20 +6,22 @@ import Card from "./Card/Card";
 import NavButton from '../Buttons/NavButton';
 import TextMain from '../Texts/TextMain/TextMain';
 import OverlayText from "../Texts/OverlayText/OverlayText";
+import { useAuth } from "../../services/authContext";
+import { updateBestScore } from "../../services/db";
 
 
 export default function Game({difficulty}) {
     const {state, dispatch} = useGame();
+    const {user} = useAuth()
     const nodeRef = useRef(null);
-    
 
     const levelsConfig = {
         easy:   { HPs: 10,  totalPairs: 6, difficultyText: "Лёгкий",
-                currentPath: '/LevelEasy', nextPath: '/LevelNormal', HPsPenalty: 2600},
+                currentPath: '/LevelEasy', nextPath: '/LevelNormal', HPsPenalty: 2600, bestScoreKey: "bestScoreEasy"},
         normal: { HPs: 14, totalPairs: 9, difficultyText: "Средний", 
-                currentPath: '/LevelNormal', nextPath: '/LevelHard', HPsPenalty: 3000},
+                currentPath: '/LevelNormal', nextPath: '/LevelHard', HPsPenalty: 3000, bestScoreKey: "bestScoreNormal"},
         hard:   { HPs: 16, totalPairs: 12, difficultyText: "Сложный",
-                currentPath: '/LevelHard', nextPath: '', HPsPenalty: 5400},
+                currentPath: '/LevelHard', nextPath: '', HPsPenalty: 5400, bestScoreKey: "bestScoreHard"},
     };
 
     const gameLayout = {    
@@ -35,6 +37,8 @@ export default function Game({difficulty}) {
     }, [difficulty]);
 
     useEffect(() => {
+        console.log(user)
+        console.log(user?.uid)
         if (state.flippedCards.length == 2) {
             const [first, second] = state.flippedCards.map(i => state.cards[i]);
 
@@ -49,15 +53,21 @@ export default function Game({difficulty}) {
     }, [state.flippedCards])
     
     useEffect(() => {
-        if (state.pairsFound == state.totalPairs) {
+        if (state.pairsFound == 1/*state.totalPairs*/) {
             dispatch({ type: "VICTORY" });
-            console.log(state.score)
-            // тут можно вызвать updateBestScore
         }
         if (state.HPsLeft == 0) {
             dispatch({ type: "DEFEAT" });
         }
     }, [state.pairsFound, state.HPsLeft]);
+
+    useEffect(() => {
+        console.log(state.score);
+        if ((user) && ((!user[state.bestScoreKey.score]) || (state.score < user[state.bestScoreKey.score]))) {
+            console.log("внутри иф");
+            // updateBestScore(user.uid, state.bestScoreKey, state.score, state.HPsLeft, state.timeSpent);
+        }
+    }, [state.victory])
 
     let endGameBtn = <NavButton text={"Попробовать ещё раз"} path={state.currentPath}/>;
     if (state.victory && state.nextPath) {

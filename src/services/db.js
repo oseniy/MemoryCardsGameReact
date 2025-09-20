@@ -7,7 +7,6 @@ export async function isUsernameTaken(usernameToCheck) {
 
     try {
         const querySnapshot = await getDocs(q);
-        console.log("empty: ", querySnapshot);
         if (!querySnapshot.empty) {
             const error = new Error("Этот никнейм уже используется.");
             error.code = "username-is-taken"
@@ -57,7 +56,7 @@ export async function getUserData(uid) {
         const userSnap = await getDoc(userRef);
         return userSnap.exists() ? userSnap.data() : null;
     } catch(error) {
-        console.error("Ошибка при получении username:", error);
+        console.error("Ошибка при получении данных пользователя:", error);
         throw error;
     }
 }
@@ -69,5 +68,21 @@ export async function updateDbEmailVerified(uid) {
     } catch(error) {
         console.error("Ошибка обновления emailVerified в базе данных:", error);
         throw error;        
+    }
+}
+
+export async function updateBestScore(uid, key, score, HPsLeft, timeSpent) {
+     try {
+        const userRef = doc(db, "users", uid);
+        await updateDoc(userRef, {
+            [key]: {
+                score: score,
+                HPsLeft: HPsLeft,
+                timeSpent: timeSpent
+            }
+        })
+    } catch(error) {
+        console.error("Ошибка при обновлении рекорда игрока:", error);
+        throw error;
     }
 }

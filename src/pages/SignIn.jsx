@@ -26,7 +26,6 @@ export default function SignIn() {
             await signIn(email, password);
             setLoading(false);
             navigate("/")
-            console.log("пользователь вошел");
         } catch (error) {
             setLoading(false);
             alert(`Ошибка входа в аккаунт: ${error.message}`);
