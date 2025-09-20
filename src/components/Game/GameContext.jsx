@@ -4,7 +4,7 @@ import createCards from "./cardsArray";
 const GameContext = createContext();
 
 const initialState = {
-    Hps: 0,
+    HPs: 0,
     HPsLeft: Infinity,
     totalPairs: 0,
     pairsFound: Infinity,
@@ -35,6 +35,7 @@ function gameReducer(state, action) {
                 victory: false,
                 defeat: false,
                 timeSpent: 0,
+                bestScoreKey: action.payload.bestScoreKey,
                 cards: createCards(action.payload.totalPairs)
             };
         case "FLIP_FIRST":
