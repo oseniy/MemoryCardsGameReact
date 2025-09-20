@@ -14,9 +14,12 @@ export default function Game({difficulty}) {
     
 
     const levelsConfig = {
-        easy:   { HPs: 8,  totalPairs: 6, difficultyText: "Лёгкий", currentPath: '/LevelEasy', nextPath: '/LevelNormal'},
-        normal: { HPs: 14, totalPairs: 9, difficultyText: "Средний", currentPath: '/LevelNormal', nextPath: '/LevelHard'},
-        hard:   { HPs: 16, totalPairs: 12, difficultyText: "Сложный", currentPath: '/LevelHard', nextPath: ''},
+        easy:   { HPs: 10,  totalPairs: 6, difficultyText: "Лёгкий",
+                currentPath: '/LevelEasy', nextPath: '/LevelNormal', HPsPenalty: 2600},
+        normal: { HPs: 14, totalPairs: 9, difficultyText: "Средний", 
+                currentPath: '/LevelNormal', nextPath: '/LevelHard', HPsPenalty: 3000},
+        hard:   { HPs: 16, totalPairs: 12, difficultyText: "Сложный",
+                currentPath: '/LevelHard', nextPath: '', HPsPenalty: 5400},
     };
 
     const gameLayout = {    
@@ -48,9 +51,10 @@ export default function Game({difficulty}) {
     useEffect(() => {
         if (state.pairsFound == state.totalPairs) {
             dispatch({ type: "VICTORY" });
+            console.log(state.score)
             // тут можно вызвать updateBestScore
         }
-        if (state.HPsLeft == state.HPs-1) {
+        if (state.HPsLeft == 0) {
             dispatch({ type: "DEFEAT" });
         }
     }, [state.pairsFound, state.HPsLeft]);

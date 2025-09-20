@@ -17,7 +17,9 @@ const initialState = {
     cards: [],
     flippedCards: [],
     victory: false,
-    defeat: false
+    defeat: false,
+    HpsPenalty: 0,
+    score: 0
 }
 
 function gameReducer(state, action) {
@@ -69,9 +71,14 @@ function gameReducer(state, action) {
                 flippedCards: []
             };
         case "VICTORY":
+            let HPsLost = state.HPs - state.HPsLeft;
+            const timeSpent = Date.now() - state.startTime;
+            const penaltyPoints = timeSpent + HPsLost * state.HPsPenalty;
+            console.log(penaltyPoints)
             return {
                 ...state,
-                timeSpent: Date.now() - state.startTime, started: false,
+                score: penaltyPoints,
+                timeSpent: timeSpent, started: false,
                 victory: true
             };
         case "DEFEAT":
