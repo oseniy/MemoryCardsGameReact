@@ -30,7 +30,7 @@ export default function Game({difficulty}) {
         normal: styles.gameNormal,
         hard: styles.gameHard
     }
-
+    console.log(user);
     useEffect(() => {
         if (levelsConfig[difficulty]) {
             dispatch({ type: "START_LEVEL", payload: levelsConfig[difficulty] })
@@ -66,7 +66,9 @@ export default function Game({difficulty}) {
         const saveScore = async () => {
             try {
                 const best = user[state.bestScoreKey]?.score;
+                console.log(best, state.score)
                 if (!best || state.score < best) {
+                    dispatch({type: "NEWBEST"});
                     await updateBestScore(
                         auth.currentUser.uid,
                         state.bestScoreKey,
@@ -103,7 +105,8 @@ export default function Game({difficulty}) {
                         <Card key={`${card.value}-${i}`} index={i} color={card.color} img={card.img} className={styles.positionCard}/>
                     ))}
                 </div>
-                    <OverlayText show={state.victory}>Победа!</OverlayText>
+                    <OverlayText show={state.victory && !state.bestScore}>Победа!</OverlayText>
+                    <OverlayText show={state.bestScore}>Победа!<br/>Новый рекорд!</OverlayText>
                     <OverlayText show={state.defeat}>Поражение(</OverlayText>
             </div>
             <div className={styles.controlBar}>

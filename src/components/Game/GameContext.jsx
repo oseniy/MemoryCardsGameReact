@@ -20,7 +20,8 @@ const initialState = {
     defeat: false,
     bestScoreKey: "",
     HpsPenalty: 0,
-    score: 0
+    score: 0,
+    bestScore: false
 }
 
 function gameReducer(state, action) {
@@ -86,6 +87,11 @@ function gameReducer(state, action) {
             return {
                 ...state,
                 defeat: true
+            };
+        case "NEWBEST":
+            return {
+                ...state,
+                bestScore: true
             };
         default: 
             return state;
