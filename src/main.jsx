@@ -5,13 +5,16 @@ import  App from './App/App';
 import './index.css';
 import { LoadingProvider } from './components/Loading/LoadingContext';
 import { AuthProvider } from './services/authContext';
+import { UserDataProvider } from './services/UserDataContext';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <LoadingProvider>
         <AuthProvider>  
-          <App />
+          <UserDataProvider>
+            <App />
+          </UserDataProvider>
         </AuthProvider>
       </LoadingProvider>
     </BrowserRouter>

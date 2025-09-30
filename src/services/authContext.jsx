@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { onIdTokenChanged } from "firebase/auth";
 import { auth } from "./firebase";
-import { getUserData } from "./db";
 import { useLoading } from "../components/Loading/LoadingContext";
 
 const AuthContext = createContext();
@@ -13,9 +12,7 @@ export function AuthProvider({children}) {
         const unsubscribe = onIdTokenChanged(auth, async (user) => {
             setLoading(true);
             if (user) {
-                const uid = user.uid;
-                const userData = await getUserData(uid);
-                setUser(userData);
+                setUser(user);
                 setLoading(false);
             } else {
                 setUser(null);

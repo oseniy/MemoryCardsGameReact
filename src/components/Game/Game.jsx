@@ -2,7 +2,7 @@ import { useEffect, useRef} from "react";
 import { CSSTransition } from 'react-transition-group'
 import styles from "./Game.module.css";
 import { useGame } from "./GameContext";
-import { useAuth } from "../../services/authContext";
+import { useUserData } from '../../services/UserDataContext';
 import Card from "./Card/Card";
 import NavButton from '../Buttons/NavButton';
 import TextMain from '../Texts/TextMain/TextMain';
@@ -13,8 +13,8 @@ import { updateBestScore } from "../../services/db";
 
 export default function Game({difficulty}) {
     const {state, dispatch} = useGame();
-    const {user} = useAuth()
     const nodeRef = useRef(null);
+    const {userData} = useUserData();
 
     const levelsConfig = {
         easy:   { HPs: 10,  totalPairs: 6, difficultyText: "Лёгкий",
@@ -30,7 +30,6 @@ export default function Game({difficulty}) {
         normal: styles.gameNormal,
         hard: styles.gameHard
     }
-    console.log(user);
     useEffect(() => {
         if (levelsConfig[difficulty]) {
             dispatch({ type: "START_LEVEL", payload: levelsConfig[difficulty] })
@@ -61,11 +60,11 @@ export default function Game({difficulty}) {
     }, [state.pairsFound, state.HPsLeft]);
 
     useEffect(() => {
-        if (!state.victory || !user) return;
+        if (!state.victory || !userData) return;
 
         const saveScore = async () => {
             try {
-                const best = user[state.bestScoreKey]?.score;
+                const best = userData[state.bestScoreKey]?.score;
                 console.log(best, state.score)
                 if (!best || state.score < best) {
                     dispatch({type: "NEWBEST"});
@@ -83,7 +82,7 @@ export default function Game({difficulty}) {
         };
 
         saveScore();
-    }, [state.victory, user])
+    }, [state.victory, userData])
 
     let endGameBtn = <NavButton text={"Попробовать ещё раз"} path={state.currentPath}/>;
     if (state.victory && state.nextPath) {

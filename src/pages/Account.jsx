@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { useAuth } from '../services/authContext';
-import { getUsername } from '../services/db';
 import { useLoading } from '../components/Loading/LoadingContext';
+import { useUserData } from '../services/UserDataContext';
 import Screen from '../components/Screen/Screen';
 import NavButton from '../components/Buttons/NavButton';
 import TextMain from '../components/Texts/TextMain/TextMain';
@@ -14,16 +13,9 @@ import { CSSTransition, SwitchTransition } from 'react-transition-group';
 export default function Account() {
     const navigate = useNavigate();
     const nodeRef = useRef(null);
-    const {user} = useAuth();
-    const [localUser, setLocalUser] = useState(user);
     const [emailSent, setEmailSent] = useState(false);
     const [loading, setLoading] = useLoading();
-
-    useEffect(() => {
-        if (user) {
-            setLocalUser(user);
-        }
-    }, [user]);
+    const {userData} = useUserData();
 
     const handleClick = async () => {
         setLoading(true);
@@ -50,12 +42,12 @@ export default function Account() {
             console.error(`Ошибка при отправке письма для подтверждения почты: ${error.message}`);
         }
     }
-
+    console.log(userData)
     return (
         <Screen>
-            <TextMain>{localUser?.username}</TextMain>
+            <TextMain>{userData?.username}</TextMain>
             {
-                !localUser?.emailVerified ?
+                !userData?.emailVerified ?
                     <>
                         <TextSmallPale>Подтвердите почту, чтобы попасть в таблицу лидеров!</TextSmallPale>
                         <SwitchTransition mode="out-in">

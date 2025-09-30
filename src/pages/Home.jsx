@@ -1,21 +1,12 @@
-import { useEffect, useState } from 'react';
-import { onTokenChanged } from 'firebase/app-check';
 import NavButton from '../components/Buttons/NavButton';
 import Screen from '../components/Screen/Screen';
 import Header from '../components/Texts/Header/Header';
 import TextSmallPale from '../components/Texts/TextSmallPale/TextSMallPale';
 import TopBar from '../components/TopBar/TopBar';
-import { auth } from '../services/firebase';
+import { useAuth } from '../services/authContext';
 
 export default function Home() {
-    const [user, setUser] = useState(auth.currentUser);
-
-    useEffect(() => {
-        const unsubscribe = onTokenChanged(auth, (currentUser) => {
-            setUser(currentUser);
-        });
-        return unsubscribe;
-    }, [])
+    const {user} = useAuth();
 
     return (
         <Screen>  
