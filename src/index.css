@@ -31,17 +31,20 @@ html, body, #root {
 .font-small-pale {
     cursor: default;
     font-size: clamp(1rem, 3vmin, 1.8rem);
-    color: rgb(150, 150, 150)
+    color: rgb(150, 150, 150);
+    margin: clamp(0.5rem, 2vmin, 1.25rem); 
 }
 
 .font-small {
     cursor: default;
     font-size:clamp(1rem, 3vmin, 1.8rem);
+    margin: clamp(0.5rem, 2vmin, 1.25rem); 
 }
 
 .font-main {
     cursor: default;
     font-size: clamp(1.5rem, 5vmin, 3rem);
+    margin: clamp(0.5rem, 2vmin, 1.25rem); 
 }
 
 .gold-color {

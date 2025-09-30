@@ -1,0 +1,16 @@
+.table {
+    border: 0.3rem solid black;
+    border-radius: 15px; 
+    margin: 0 10%;
+    overflow-y: auto;
+    max-height: 70%;
+}
+
+.tableRow {
+    display: flex;
+}
+
+.tableElement {
+    flex: 1;
+    overflow: hidden;
+}
