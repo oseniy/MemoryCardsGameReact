@@ -44,7 +44,7 @@ export default function Account() {
             console.error(`Ошибка при отправке письма для подтверждения почты: ${error.message}`);
         }
     }
-    
+
     return (
         <Screen>
             <TextMain>{userData?.username}</TextMain>
@@ -87,7 +87,7 @@ export default function Account() {
                             <TextSmall>Жизней осталось</TextSmall>
                         </TableElement>
                         <TableElement>
-                            <TextSmall>время на уровне (сек)</TextSmall>
+                            <TextSmall>Время на уровне (сек)</TextSmall>
                         </TableElement>
                     </TableRow>
                     <TableRow>

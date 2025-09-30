@@ -21,7 +21,7 @@ const initialState = {
     bestScoreKey: "",
     HpsPenalty: 0,
     score: 0,
-    bestScore: false
+    bestScore: null
 }
 
 function gameReducer(state, action) {

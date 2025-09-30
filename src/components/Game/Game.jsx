@@ -104,7 +104,7 @@ export default function Game({difficulty}) {
                         <Card key={`${card.value}-${i}`} index={i} color={card.color} img={card.img} className={styles.positionCard}/>
                     ))}
                 </div>
-                    <OverlayText show={state.victory && !state.bestScore}>Победа!</OverlayText>
+                    <OverlayText show={state.victory && state.bestScore != null && !state.bestScore}>Победа!</OverlayText>
                     <OverlayText show={state.bestScore}>Победа!<br/>Новый рекорд!</OverlayText>
                     <OverlayText show={state.defeat}>Поражение(</OverlayText>
             </div>
