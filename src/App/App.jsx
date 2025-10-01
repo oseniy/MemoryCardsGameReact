@@ -10,10 +10,13 @@ import Home from '../pages/Home';
 import LevelEasy from '../pages/LevelEasy';
 import LevelNormal from '../pages/LevelNormal';
 import LevelHard from '../pages/LevelHard';
-import LeaderBoard from '../pages/LeaderBoard';
 import SignUp from '../pages/SignUp';
 import SignIn from '../pages/SignIn';
 import Account from '../pages/Account';
+import LeaderBoardMenu from '../pages/LeaderBoardMenu';
+import LeaderBoardEasy from '../pages/leaderBoardEasy';
+import LeaderBoardNormal from '../pages/leaderBoardNormal';
+import LeaderBoardHard from '../pages/leaderBoardHard';
 
 export default function App() {
   const location = useLocation();
@@ -51,7 +54,10 @@ export default function App() {
                         <LevelHard />
                       </GameProvider>
                       } />
-                    <Route path="/LeaderBoard" element={<LeaderBoard />} />
+                    <Route path="/LeaderBoardMenu" element={<LeaderBoardMenu />} />
+                    <Route path="/LeaderBoardMenu/LeaderBoardEasy" element={<LeaderBoardEasy />} />
+                    <Route path="/LeaderBoardMenu/LeaderBoardNormal" element={<LeaderBoardNormal />} />
+                    <Route path="/LeaderBoardMenu/LeaderBoardHard" element={<LeaderBoardHard />} />
                     <Route path="/SignUp" element={<SignUp />} />
                     <Route path="/SignIn" element={<SignIn />} />
                     <Route path="/Account" element={<Account/>}/>

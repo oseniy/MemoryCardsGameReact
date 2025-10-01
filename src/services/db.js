@@ -34,33 +34,6 @@ export async function createUser(uid, username, email) {
 
 }
 
-export async function getUsername(uid) {
-    try {
-        const userRef = doc(db, "users", uid);
-        const userSnap = await getDoc(userRef);
-        if (userSnap.exists()) {
-            return userSnap.data().username;
-        } else {
-            console.warn("Документ не найден:", uid);
-            return null;
-        }
-    } catch(error) {
-        console.error("Ошибка при получении username:", error);
-        throw error;
-    }
-}
-
-export async function getUserData(uid) {
-    try {
-        const userRef = doc(db, "users", uid);
-        const userSnap = await getDoc(userRef);
-        return userSnap.exists() ? userSnap.data() : null;
-    } catch(error) {
-        console.error("Ошибка при получении данных пользователя:", error);
-        throw error;
-    }
-}
-
 export async function updateDbEmailVerified(uid) {
     try {
         const userRef = doc(db, "users", uid);
@@ -85,4 +58,24 @@ export async function updateBestScore(uid, key, score, HPsLeft, timeSpent) {
         console.error("Ошибка при обновлении рекорда игрока:", error);
         throw error;
     }
+}
+
+export async function getAllUsers() {
+    const users = [];
+    try {
+        const usersCollectionRef = collection(db, 'users');
+        const q = query(usersCollectionRef);
+        const querySnapshot = await getDocs(q);
+
+        querySnapshot.forEach((doc) => {
+            users.push(doc.data());
+        })
+        return users
+    } catch (error) {
+        console.error("Ошибка при загрузке рекордов игроков:", error);
+    }
+}
+
+export function formatMilliseconds(ms) {
+    return (ms / 1000).toFixed(3).replace(/\.?0+$/, '');
 }

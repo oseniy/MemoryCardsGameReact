@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import { signIn } from "../services/auth";
 import { useLoading } from '../components/Loading/LoadingContext';
 import NavButton from '../components/Buttons/NavButton';
-import Screen from '../components/Screen/Screen';
+import Screen from '../components/Screen';
 import Input from '../components/Input/Input'
 import SubmitButton from '../components/Buttons/SubmitButton';
 

@@ -4,7 +4,8 @@ import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { useLoading } from '../components/Loading/LoadingContext';
 import { useUserData } from '../services/UserDataContext';
 import { HandleSignOut, sendEmail } from '../services/auth';
-import Screen from '../components/Screen/Screen';
+import { formatMilliseconds } from '../services/db';
+import Screen from '../components/Screen';
 import NavButton from '../components/Buttons/NavButton';
 import TextMain from '../components/Texts/TextMain/TextMain';
 import Button from '../components/Buttons/Button';
@@ -143,8 +144,4 @@ export default function Account() {
             <NavButton/>
         </Screen>
     )
-}
-
-function formatMilliseconds(ms) {
-    return (ms / 1000).toFixed(3).replace(/\.?0+$/, '');
 }

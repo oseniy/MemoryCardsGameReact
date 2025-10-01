@@ -1,4 +1,4 @@
-import Screen from '../components/Screen/Screen';
+import Screen from '../components/Screen';
 import Game from '../components/Game/Game';
 
 export default function Level() {

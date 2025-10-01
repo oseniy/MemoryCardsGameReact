@@ -1,5 +1,5 @@
 import NavButton from '../components/Buttons/NavButton';
-import Screen from '../components/Screen/Screen';
+import Screen from '../components/Screen';
 import Header from '../components/Texts/Header/Header';
 import TextSmallPale from '../components/Texts/TextSmallPale/TextSMallPale';
 import TopBar from '../components/TopBar/TopBar';
@@ -7,7 +7,6 @@ import { useAuth } from '../services/authContext';
 
 export default function Home() {
     const {user} = useAuth();
-
     return (
         <Screen>  
             <TopBar>
@@ -26,7 +25,7 @@ export default function Home() {
             <NavButton text={"Легкий"} path={"/LevelEasy"} />
             <NavButton text={"Средний"} path={"/LevelNormal"} />
             <NavButton text={"Сложный"} path={"/LevelHard"} /> 
-            <NavButton text={"Лидерборд"} path={"/LeaderBoard"} />
+            <NavButton text={"Лидерборд"} path={"/LeaderBoardMenu"} />
         </Screen>
     )
 }
