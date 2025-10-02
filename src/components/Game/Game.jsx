@@ -1,4 +1,4 @@
-import { useEffect, useRef} from "react";
+import { useEffect, useRef, useState} from "react";
 import { CSSTransition } from 'react-transition-group'
 import styles from "./Game.module.css";
 import { useGame } from "./GameContext";
@@ -15,6 +15,7 @@ export default function Game({difficulty}) {
     const {state, dispatch} = useGame();
     const nodeRef = useRef(null);
     const {userData} = useUserData();
+    const [isWide, setIsWide] = useState(window.innerWidth / window.innerHeight > 0.6);
 
     const levelsConfig = {
         easy:   { HPs: 10,  totalPairs: 6, difficultyText: "Лёгкий",
@@ -30,6 +31,16 @@ export default function Game({difficulty}) {
         normal: styles.gameNormal,
         hard: styles.gameHard
     }
+
+    useEffect(() => {
+        const handleResize = () => {
+        setIsWide(window.innerWidth / window.innerHeight > 0.6);
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
     useEffect(() => {
         if (levelsConfig[difficulty]) {
             dispatch({ type: "START_LEVEL", payload: levelsConfig[difficulty] })
@@ -99,7 +110,7 @@ export default function Game({difficulty}) {
     return (
         <>
             <div className={styles.statusBar}>
-                <TextMain>Жизней: {state.HPsLeft}</TextMain>
+                {isWide ? <TextMain>Жизней: {state.HPsLeft}</TextMain> : <TextMain>Жизней: <br/>{state.HPsLeft}</TextMain>}
                 <TextMain>{state.difficultyText}</TextMain>
             </div>
             <div className={`${styles.game} ${gameLayout[difficulty]}`}>
