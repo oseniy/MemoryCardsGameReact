@@ -14,7 +14,6 @@
 }
 
 .game {
-    padding: 0 15vw;
     width: 100%;
 }
 
@@ -31,11 +30,12 @@
 }
 
 .gameEasy {
+    padding: 0 15vw;
     & .cards {
         grid-template-columns: repeat(6, 1fr);
     }
 
-    @media (max-aspect-ratio: 1.17) {
+    @media (max-aspect-ratio: 1.32) {
         & .cards {
             grid-template-columns: repeat(4, 1fr);
         }
@@ -48,6 +48,7 @@
     }
 
     @media (max-aspect-ratio: 0.58) {
+        padding: 0 11vw;
         & .cards {
             grid-template-columns: repeat(3, 1fr);
         }
@@ -55,6 +56,7 @@
 }
 
 .gameNormal {
+    padding: 0 13vw;
     .cards {
         grid-template-columns: repeat(6, 1fr);
     }
@@ -64,6 +66,7 @@
     }
 
     @media (max-aspect-ratio: 0.726) {
+    padding: 0 11vw;
     .cards {
         grid-template-columns: repeat(4, 1fr);
     }
@@ -79,11 +82,13 @@
 }
 
 .gameHard {
+    padding: 0 15vw;
     .cards {
         grid-template-columns: repeat(8, 1fr);
     }
 
     @media (max-aspect-ratio: 1.354) {
+        padding: 0 11vw;
         .cards {
             grid-template-columns: repeat(6, 1fr);
         }
@@ -95,7 +100,8 @@
         }
     }
 
-    @media (max-aspect-ratio: 0.527) {
+    @media (max-aspect-ratio: 0.58) {
+        padding: 0 15vw;
         .cards {
             grid-template-columns: repeat(4, 1fr);
         }

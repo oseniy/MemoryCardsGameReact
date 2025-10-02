@@ -51,7 +51,7 @@ export default function Game({difficulty}) {
     }, [state.flippedCards])
     
     useEffect(() => {
-        if (state.pairsFound == state.totalPairs) {
+        if (state.pairsFound == 1) {
             dispatch({ type: "VICTORY" });
         }
         if (state.HPsLeft == 0) {
@@ -90,39 +90,41 @@ export default function Game({difficulty}) {
     }
 
     return (
-        <div className={`${styles.game} ${gameLayout[difficulty]}`}>
+        <>
             <div className={styles.statusBar}>
                 <TextMain>Жизней: {state.HPsLeft}</TextMain>
                 <TextMain>{state.difficultyText}</TextMain>
             </div>
-            <div className={styles.cardsContainer}>
-                <div className={`layout 
-                    ${styles.cards}
-                    ${(state.victory || state.defeat) ? "disable" : ""}
-                    `}>
-                    {state.cards.map((card, i) => (
-                        <Card key={`${card.value}-${i}`} index={i} color={card.color} img={card.img} className={styles.positionCard}/>
-                    ))}
-                </div>
-                    <OverlayText show={state.victory && state.bestScore != null && !state.bestScore}>Победа!</OverlayText>
-                    <OverlayText show={state.bestScore}>Победа!<br/>Новый рекорд!</OverlayText>
-                    <OverlayText show={state.defeat}>Поражение(</OverlayText>
-            </div>
-            <div className={styles.controlBar}>
-                <NavButton />
-                <div className={styles.levelBtnContainer}>
-                   <CSSTransition
-                        in={state.victory || state.defeat}
-                        timeout={300}
-                        classNames="slide"
-                        nodeRef={nodeRef}
-                   >
-                    <div ref={nodeRef} style={{ visibility: state.victory || state.defeat ? "visible" : "hidden" }}>
-                        {endGameBtn}
+            <div className={`${styles.game} ${gameLayout[difficulty]}`}>
+                <div className={styles.cardsContainer}>
+                    <div className={`layout 
+                        ${styles.cards}
+                        ${(state.victory || state.defeat) ? "disable" : ""}
+                        `}>
+                        {state.cards.map((card, i) => (
+                            <Card key={`${card.value}-${i}`} index={i} color={card.color} img={card.img} className={styles.positionCard}/>
+                        ))}
                     </div>
-                   </CSSTransition>
+                        <OverlayText show={state.bestScore}>Победа!<br/>Новый рекорд!</OverlayText>
+                        <OverlayText show={state.victory && !state.bestScore}>Победа!</OverlayText>
+                        <OverlayText show={state.defeat}>Поражение(</OverlayText>
+                </div>
+                <div className={styles.controlBar}>
+                    <NavButton />
+                    <div className={styles.levelBtnContainer}>
+                    <CSSTransition
+                            in={state.victory || state.defeat}
+                            timeout={300}
+                            classNames="slide"
+                            nodeRef={nodeRef}
+                    >
+                        <div ref={nodeRef} style={{ visibility: state.victory || state.defeat ? "visible" : "hidden" }}>
+                            {endGameBtn}
+                        </div>
+                    </CSSTransition>
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
