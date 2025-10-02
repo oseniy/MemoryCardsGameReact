@@ -10,16 +10,13 @@ export default function LeaderBoard({level}) {
     const [loading, setLoading] = useLoading();
 
     useEffect(() => {
-        setLoading(true);
         const getUsers = async () => {
             try {
                 let users = await getAllUsers();
                 users = sortingUsers(users, level);
                 if (users.length > 0) setUsers(users);
-                setLoading(false);
             } catch(error) {
                 console.error("ошибка при получении данных пользователей", error)
-                setLoading(false);
             }
         }
 
