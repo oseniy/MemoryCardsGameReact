@@ -49,43 +49,50 @@ export default function Game({difficulty}) {
             }
         }
     }, [state.flippedCards])
-    
-    useEffect(() => {
-        if (state.pairsFound == 1) {
-            dispatch({ type: "VICTORY" });
-        }
-        if (state.HPsLeft == 0) {
-            dispatch({ type: "DEFEAT" });
-        }
-    }, [state.pairsFound, state.HPsLeft]);
 
     useEffect(() => {
-        if (!state.victory || !userData) return;
+        if (state.pairsFound == state.totalPairs) {
+            dispatch({ type: "ENDGAME" });
+        } else if (state.HPsLeft == 0) {
+            dispatch({ type: "ENDGAME" });
+        }        
+    }, [state.pairsFound, state.HPsLeft])
 
+    useEffect(() => {
+        console.log(state)
         const saveScore = async () => {
             try {
-                const best = userData[state.bestScoreKey]?.score;
-                console.log(best, state.score)
-                if (!best || state.score < best) {
-                    dispatch({type: "NEWBEST"});
-                    await updateBestScore(
-                        auth.currentUser.uid,
-                        state.bestScoreKey,
-                        state.score,
-                        state.HPsLeft,
-                        state.timeSpent
-                    )
-                };
+                dispatch({type: "NEWBEST"});
+                await updateBestScore(
+                    auth.currentUser.uid,
+                    state.bestScoreKey,
+                    state.score,
+                    state.HPsLeft,
+                    state.timeSpent
+                )
             } catch(error) {
                 console.error("ошибка сохранения рекорда", error)
             };
         };
+        
+        if (state.HPsLeft == 0) {
+            dispatch({ type: "DEFEAT" });
+            return;
+        }
+        const best = userData?.[state?.bestScoreKey]?.score;
+        if ((state.pairsFound == state.totalPairs) && (!best || state.score < best)) {
+            saveScore();
+            return;
+        }
+        if ((state.pairsFound == state.totalPairs) && (!userData || state.score > best)) {
+            dispatch({ type: "VICTORY" });
+            return;
+        }   
 
-        saveScore();
-    }, [state.victory, userData])
+    }, [state.endGame])
 
     let endGameBtn = <NavButton text={"Попробовать ещё раз"} path={state.currentPath}/>;
-    if (state.victory && state.nextPath) {
+    if ((state.endGameResult == "victory" || state.endGameResult == "newBest") && state.nextPath) {
         endGameBtn = <NavButton text={"Следующий уровень"} path={state.nextPath}/>
     }
 
@@ -99,26 +106,26 @@ export default function Game({difficulty}) {
                 <div className={styles.cardsContainer}>
                     <div className={`layout 
                         ${styles.cards}
-                        ${(state.victory || state.defeat) ? "disable" : ""}
+                        ${(state.endGame) ? "disable" : ""}
                         `}>
                         {state.cards.map((card, i) => (
                             <Card key={`${card.value}-${i}`} index={i} color={card.color} img={card.img} className={styles.positionCard}/>
                         ))}
                     </div>
-                        <OverlayText show={state.bestScore}>Победа!<br/>Новый рекорд!</OverlayText>
-                        <OverlayText show={state.victory && !state.bestScore}>Победа!</OverlayText>
-                        <OverlayText show={state.defeat}>Поражение(</OverlayText>
+                        <OverlayText show={state.endGameResult == "newBest"}>Победа!<br/>Новый рекорд!</OverlayText>
+                        <OverlayText show={state.endGameResult == "victory"}>Победа!</OverlayText>
+                        <OverlayText show={state.endGameResult == "defeat"}>Поражение(</OverlayText>
                 </div>
                 <div className={styles.controlBar}>
                     <NavButton />
                     <div className={styles.levelBtnContainer}>
                     <CSSTransition
-                            in={state.victory || state.defeat}
+                            in={state.endGame}
                             timeout={300}
                             classNames="slide"
                             nodeRef={nodeRef}
                     >
-                        <div ref={nodeRef} style={{ visibility: state.victory || state.defeat ? "visible" : "hidden" }}>
+                        <div ref={nodeRef} style={{ visibility: state.endGame ? "visible" : "hidden" }}>
                             {endGameBtn}
                         </div>
                     </CSSTransition>

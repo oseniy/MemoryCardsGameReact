@@ -16,12 +16,11 @@ const initialState = {
     nextPath: "",
     cards: [],
     flippedCards: [],
-    victory: false,
-    defeat: false,
     bestScoreKey: "",
     HpsPenalty: 0,
     score: 0,
-    bestScore: null
+    endGame: false,
+    endGameResult: ""
 }
 
 function gameReducer(state, action) {
@@ -33,8 +32,8 @@ function gameReducer(state, action) {
                 HPsLeft: action.payload.HPs,
                 pairsFound: 0,
                 started: false,
-                victory: false,
-                defeat: false,
+                endGame: false,
+                endGameResult: "",
                 timeSpent: 0,
                 bestScoreKey: action.payload.bestScoreKey,
                 cards: createCards(action.payload.totalPairs)
@@ -73,7 +72,7 @@ function gameReducer(state, action) {
                 HPsLeft: state.HPsLeft - 1,
                 flippedCards: []
             };
-        case "VICTORY":
+        case "ENDGAME":
             let HPsLost = state.HPs - state.HPsLeft;
             const timeSpent = Date.now() - state.startTime;
             const penaltyPoints = timeSpent + HPsLost * state.HPsPenalty;
@@ -81,17 +80,22 @@ function gameReducer(state, action) {
                 ...state,
                 score: penaltyPoints,
                 timeSpent: timeSpent, started: false,
-                victory: true
+                endGame: true
+            }
+        case "VICTORY":
+            return {
+                ...state,
+                endGameResult: "victory"
             };
         case "DEFEAT":
             return {
                 ...state,
-                defeat: true
+                endGameResult: "defeat"
             };
         case "NEWBEST":
             return {
                 ...state,
-                bestScore: true
+                endGameResult: "newBest"
             };
         default: 
             return state;
