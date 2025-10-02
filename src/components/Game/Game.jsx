@@ -86,19 +86,24 @@ export default function Game({difficulty}) {
             };
         };
         
-        if (state.HPsLeft == 0) {
+        const best = userData?.[state?.bestScoreKey]?.score;
+
+        if (state.HPsLeft === 0) {
             dispatch({ type: "DEFEAT" });
             return;
         }
-        const best = userData?.[state?.bestScoreKey]?.score;
-        if ((state.pairsFound == state.totalPairs) && (!best || state.score < best)) {
-            saveScore();
-            return;
-        }
-        if ((state.pairsFound == state.totalPairs) && (!userData || state.score > best)) {
+
+        if (state.pairsFound === state.totalPairs) {
+            if (userData) {
+                const isBetterScore = !best || state.score < best;
+                if (isBetterScore) {
+                    saveScore();
+                    return;
+                }
+            }
             dispatch({ type: "VICTORY" });
-            return;
-        }   
+        }
+  
 
     }, [state.endGame])
 
