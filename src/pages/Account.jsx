@@ -16,9 +16,42 @@ import { Table, TableRow, TableElement } from '../components/Table/Table';
 export default function Account() {
     const navigate = useNavigate();
     const nodeRef = useRef(null);
-    const [emailSent, setEmailSent] = useState(false);
+    const [emailSendDisable, setEmailSendDisable] = useState(() => localStorage.getItem("timerStart"));
     const [loading, setLoading] = useLoading();
     const {userData} = useUserData();
+    const [timer, setTimer] = useState(0);
+    const COOLDOWN_MS = 60000;
+
+    useEffect(() => {
+        console.log("ESD: ", emailSendDisable)
+        const start = localStorage.getItem("timerStart");
+        if (start) {
+            const remaining = Math.max(0, COOLDOWN_MS - (Date.now() - Number(start)));
+            setEmailSendDisable(true);
+            if (remaining > 0) {
+                setTimer(Math.ceil(remaining / 1000));
+            }
+        }
+
+    }, [])
+
+    useEffect(() => {
+        if (!emailSendDisable) return;
+
+        const intervalId = setInterval(() => {
+            setTimer( prev => {
+                if (prev <= 1) {
+                    clearInterval(intervalId);
+                    setEmailSendDisable(false);
+                    localStorage.removeItem("timerStart");
+                    return 0;
+                }
+                return prev - 1;
+            })
+        }, 1000)
+
+        return () => clearInterval(intervalId);
+    }, [emailSendDisable])
 
     const handleClick = async () => {
         setLoading(true);
@@ -37,8 +70,10 @@ export default function Account() {
         setLoading(true);
         try {
             await sendEmail();
+            setTimer(COOLDOWN_MS / 1000);
             setLoading(false);
-            setEmailSent(true);
+            setEmailSendDisable(true);
+            localStorage.setItem("timerStart", Date.now());
         } catch(error) {
             setLoading(false);
             alert(`Ошибка при отправке письма для подтверждения почты: ${error.message}`);
@@ -55,7 +90,7 @@ export default function Account() {
                         <TextSmallPale>Подтвердите почту, чтобы попасть в таблицу лидеров!</TextSmallPale>
                         <SwitchTransition mode="out-in">
                             <CSSTransition
-                                key={emailSent}
+                                key={emailSendDisable}
                                 timeout={300}
                                 classNames="slide"
                                 nodeRef={nodeRef}
@@ -63,12 +98,12 @@ export default function Account() {
                             >
                                 <div ref={nodeRef}>
                                     {
-                                        !emailSent ?
+                                        !emailSendDisable ?
                                             <Button text={"Отправить письмо для подтверждения почты"} onClick={hanldeSendEmail}/>
                                         :
                                             <>
                                                 <TextMain>Письмо Отправлено</TextMain>
-                                                <TextSmallPale>Проверьте папку Спам</TextSmallPale>
+                                                <TextSmallPale>Проверьте папку Спам. Повторная отправка возможна через {timer} сек</TextSmallPale>
                                             </>
                                     }
                                 </div>

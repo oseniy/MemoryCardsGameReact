@@ -51,7 +51,6 @@ export default function LeaderBoard({level}) {
                     users ? 
                         users.map((user, i) => {
                             if (!user[level]) return null;
-                            console.log(user);
                             return (
                                 <TableRow key={i}>
                                     <TableElement>
@@ -70,9 +69,9 @@ export default function LeaderBoard({level}) {
                             )
                         })  
                     : loading ?
-                        <>{console.log("в loading")}</>
+                        <></>
                     :
-                        <TableRow>{console.log("в Пока тут ничего нет")}
+                        <TableRow>
                             <TableElement>
                                 <TextSmallPale>Пока тут ничего нет...</TextSmallPale>
                             </TableElement>                    

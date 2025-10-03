@@ -70,7 +70,6 @@ export default function Game({difficulty}) {
     }, [state.pairsFound, state.HPsLeft])
 
     useEffect(() => {
-        console.log(state)
         const saveScore = async () => {
             try {
                 dispatch({type: "NEWBEST"});
