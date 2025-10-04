@@ -67,7 +67,7 @@ export default function Account({sendEmailDisable, setSendEmailDisable}) {
     const hanldeSendEmail = async () => {
         setLoading(true);
         try {
-            // await sendEmail();
+            await sendEmail();
             setTimer(COOLDOWN_MS / 1000);
             setLoading(false);
             setSendEmailDisable(true);

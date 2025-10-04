@@ -1,12 +1,39 @@
-# React + Vite
+# 🧠 Memory Cards Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Интерактивная веб-игра на запоминание, где игроку нужно находить пары одинаковых карточек.
+Приложение реализовано на React, использует плавные анимации переходов, адаптивный дизайн, авторизацию через Firebase и систему рекордов для зарегистрированных пользователей.
 
-Currently, two official plugins are available:
+## 🚀 Функциональность
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ✅ Адаптивный интерфейс — оптимизирован под любое соотношение сторон экрана
+- 🔄 Анимации — переход между страницами, события игры и другие
+- 🔐 Авторизация и регистрация через Firebase Authentication
+- 🧑‍💼 Хранение данных пользователей в Firestore
+- 🏆 Лидерборд — отображение лучших результатов игроков
+- 🔥 Хостинг на Firebase Hosting
+- 🎨 Случайная генерация карточек (комбинации цветов, картинок и их расположения) для каждой партии 
+- 🎮 3 уровня сложности
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend uSign TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Технологии
+
+* React
+* React Router
+* react Transition Group
+* CSS Modules
+* Firebase (Authentication + Firestore)
+* Vite
+
+## 📈 Скриншоты
+
+<p align="center">
+  <img src="./screenshots/screenshot1.jpg" width="100%" />
+  <img src="./screenshots/screenshot2.jpg" width="100%" />
+  <img src="./screenshots/screenshot3.jpg" width="45%" /><img src="./screenshots/screenshot4.jpg" width="45%" />  <img src="./screenshots/screenshot5.jpg" width="100%" />
+</p>
+
+## 
+
+## 🎮 Попробовать игру
+
+👉 [Запустить игру онлайн](https://memorycardsgame-6b7d9.web.app)  
