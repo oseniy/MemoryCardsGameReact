@@ -36,4 +36,4 @@
 
 ## 🎮 Попробовать игру
 
-👉 [Запустить игру онлайн](https://memorycardsgame-6b7d9.web.app)  
+👉 [Запустить игру онлайн](https://memorycardgamereact.web.app)  
