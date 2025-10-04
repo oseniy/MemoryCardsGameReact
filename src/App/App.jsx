@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from 'react-router';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import styles from './App.module.css';
 import backgroundImage from '../assets/imgs/background.webp';
@@ -22,6 +22,7 @@ export default function App() {
   const location = useLocation();
   const nodeRef = useRef(null);
   const [loading, setLoading] = useLoading();
+  const [sendEmailDisable, setSendEmailDisable] = useState(false);
 
   return (
     <div
@@ -60,7 +61,9 @@ export default function App() {
                     <Route path="/LeaderBoardMenu/LeaderBoardHard" element={<LeaderBoardHard />} />
                     <Route path="/SignUp" element={<SignUp />} />
                     <Route path="/SignIn" element={<SignIn />} />
-                    <Route path="/Account" element={<Account/>}/>
+                    <Route path="/Account" element={<Account 
+                    sendEmailDisable={sendEmailDisable} 
+                    setSendEmailDisable={setSendEmailDisable}/>}/>
                 </Routes>
               </div>
           </CSSTransition>
