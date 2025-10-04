@@ -75,7 +75,7 @@ export async function HandleSignOut() {
 }
 
 const continueUrl = {
-  url: 'http://localhost:5173/Account',
+  url: 'https://memorycardgamereact.web.app/Account',
   handleCodeInApp: true
 }
 
