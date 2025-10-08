@@ -98,7 +98,7 @@ html, body, #root {
 }
 
 .slide-enter-active {
-  animation: slide-in 300ms ease forwards;
+  animation: slide-in 500ms ease forwards;
 }
 
 .slide-exit {
@@ -106,7 +106,7 @@ html, body, #root {
 }
 
 .slide-exit-active {
-  animation: slide-out 300ms ease forwards;
+  animation: slide-out 500ms ease forwards;
 }
 
 .fade-enter {

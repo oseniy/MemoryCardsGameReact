@@ -20,5 +20,6 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  transition: transform 500ms ease, opacity 500ms ease;
+  transition: transform 500ms ease forwards, opacity 500ms ease forwards;
+  will-change: transform, opacity;
 }
