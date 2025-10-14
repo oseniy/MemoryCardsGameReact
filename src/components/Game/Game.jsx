@@ -64,7 +64,7 @@ export default function Game({difficulty}) {
     useEffect(() => {
         if (state.pairsFound == state.totalPairs) {
             dispatch({ type: "ENDGAME" });
-        } else if (state.HPsLeft == 0) {
+        } else if (state.HPsLeft == state.HPs-1) {
             dispatch({ type: "ENDGAME" });
         }        
     }, [state.pairsFound, state.HPsLeft])
@@ -87,7 +87,7 @@ export default function Game({difficulty}) {
         
         const best = userData?.[state?.bestScoreKey]?.score;
 
-        if (state.HPsLeft === 0) {
+        if (state.HPsLeft === state.HPs-1) {
             dispatch({ type: "DEFEAT" });
             return;
         }
