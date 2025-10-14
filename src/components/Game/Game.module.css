@@ -15,8 +15,6 @@
 
 .game {
     width: 100%;
-    display: flex;
-    flex-direction: column;
 }
 
 .cardsContainer {
@@ -30,7 +28,6 @@
     width: 100%;
     display: grid;
     gap: 2vmin;
-    justify-content: center;
     transition: opacity 0.5s ease;
 }
 
@@ -40,9 +37,10 @@
         grid-template-columns: repeat(6, 1fr);
     }
 
-    @media (max-aspect-ratio: 1) {
+    @media (max-aspect-ratio: 1.7) {
         & .cards {
             grid-template-columns: repeat(4, 1fr);
+            max-width: 75vh;
         }
     }
 
@@ -52,11 +50,8 @@
         }
     }
 
-    @media (max-aspect-ratio: 0.8) {
+    @media (max-aspect-ratio: 1) {
         padding: 0 11vw;
-        .positionCard {
-            max-width: clamp();
-        }
         & .cards {
             grid-template-columns: repeat(3, 1fr);
             max-width: 45vh;
@@ -74,10 +69,11 @@
         max-width: 20vh;
     }
 
-    @media (max-aspect-ratio: 1) {
+    @media (max-aspect-ratio: 1.2) {
     padding: 0 20vw;
     .cards {
         grid-template-columns: repeat(4, 1fr);
+        max-width: 50vh;
     }
 
     .cards .positionCard:nth-child(17) {
@@ -99,10 +95,11 @@
         grid-template-columns: repeat(8, 1fr);
     }
 
-    @media (max-aspect-ratio: 1.354) {
+    @media (max-aspect-ratio: 1.7) {
         padding: 0 11vw;
         .cards {
             grid-template-columns: repeat(6, 1fr);
+            max-width: 90vh;
         }
     }
 
@@ -112,10 +109,11 @@
         }
     }
 
-    @media (max-aspect-ratio: 0.58) {
+    @media (max-aspect-ratio: 0.8) {
         padding: 0 15vw;
         .cards {
             grid-template-columns: repeat(4, 1fr);
+            max-width: 38vh;
         }
     }
 }

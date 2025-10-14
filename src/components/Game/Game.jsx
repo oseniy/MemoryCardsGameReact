@@ -62,9 +62,9 @@ export default function Game({difficulty}) {
     }, [state.flippedCards])
 
     useEffect(() => {
-        if (state.pairsFound == state.totalPairs) {
+        if (state.pairsFound === state.totalPairs) {
             dispatch({ type: "ENDGAME" });
-        } else if (state.HPsLeft == state.HPs-1) {
+        } else if (state.HPsLeft === 0) {
             dispatch({ type: "ENDGAME" });
         }        
     }, [state.pairsFound, state.HPsLeft])
@@ -87,7 +87,7 @@ export default function Game({difficulty}) {
         
         const best = userData?.[state?.bestScoreKey]?.score;
 
-        if (state.HPsLeft === state.HPs-1) {
+        if (state.HPsLeft === 0) {
             dispatch({ type: "DEFEAT" });
             return;
         }
